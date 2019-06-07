@@ -10,3 +10,6 @@ print("insert msg)
 Remember to stage changes and push once done
 
 NOTE: cd.. to go back one folder
+
+TRINKET
+https://trinket.io/python/734fb6e072
