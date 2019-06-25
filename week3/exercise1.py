@@ -12,7 +12,11 @@ def loop_ranger(start, stop=None, step=1):
     The look up the docs for range(), you can answer this with just the range 
     function, but we'd like you to do it the long way, probably using a loop.
     """
-    return None
+    list = [] #Creates empty list
+    while start < stop: #While the stop integer is greater than start integer
+        list.append(int(start)) #Add the integer value of 'start'
+        start = start + step #New start variable now equals previous start + step
+    return list
 
 
 def lone_ranger(start, stop, step):
@@ -20,8 +24,11 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
-
+    list = [] #Creates empty list
+    while start < stop: #While the stop integer is greater than start integer
+        list.append(int(start)) #Add the integer value of 'start'
+        start = start + step #New start variable now equals previous start + step
+    return list
 
 def two_step_ranger(start, stop):
     """Make a range that steps by 2.
@@ -29,7 +36,11 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return None
+    list = [] #Creates empty list
+    while start < stop: #While the stop integer is greater than start integer
+        list.append(int(start)) #Add the integer value of 'start'
+        start = start + 2 #New start variable now equals previous start + 2
+    return list
 
 
 def stubborn_asker(low, high):
@@ -40,7 +51,20 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+    low_bound = int(low)
+    high_bound = int(high)
+    bounded = False
+    
+    while not bounded:
+        guess = int(input())
+        if guess < low_bound:
+            print('GUESS AGAIN!')
+        elif guess > high_bound:
+            print('GUESS AGAIN')
+        else:
+            bounded = True
+            print('NICE JOB')
+    return guess
 
 
 def not_number_rejector(message):
@@ -50,8 +74,20 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+    isnumber = False
 
+    import sys
+    print(sys.version_info)
+
+    while not isnumber:
+        try:
+            number = str(input(message))
+            number = int(number)
+            print (number)
+            return number
+        except ValueError:
+            print('Not number')
+    return number
 
 def super_asker(low, high):
     """Robust asking function.
@@ -61,8 +97,24 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+    bounded = False
+    low_bound = int(low)
+    high_bound = int(high)
 
+    while not bounded:
+        try:
+            number = str(input('Please Insert a Number: '))
+            number = int(number)
+            if number < low_bound:
+                print('Too low, GUESS AGAIN!')
+            elif number > high_bound:
+                print('Too high, GUESS AGAIN')
+            else:
+                bounded = True
+                print('NICE JOB')
+        except ValueError:
+            print('Not number')
+    return number
 
 if __name__ == "__main__":
     # this section does a quick test on your results and prints them nicely.
