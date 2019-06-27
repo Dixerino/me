@@ -25,6 +25,21 @@ def binary_search(low, high, actual_number):
     """
     tries = 0
     guess = 0
+    guessed = False
+    while not guessed:
+        midpoint = int((high+low)/2)
+        if midpoint == actual_number:
+            print('You got the number, {}!'.format(actual_number))
+            guessed = True
+        elif midpoint > actual_number:
+            print('Guess No.{}: {}'.format(tries + 1, midpoint))
+            high = midpoint - 1
+            tries = tries + 1
+        else:
+            print('Guess No.{}: {}'.format(tries + 1, midpoint))
+            low = midpoint + 1
+            tries = tries + 1
+
     return {"guess": guess, "tries": tries}
 
 
