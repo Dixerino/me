@@ -32,12 +32,15 @@ def advancedGuessingGame():
     print("\nWelcome to the guessing game!")
     while not isnumber:
       try:
-        lower = str((input("Enter a lower bound: ")))
+        lower = str(input("Enter a lower bound: "))
         upper = str(input("Enter an upper bound: "))
         upperBound = int(upper)
         lowerBound = int(lower)
-        print("OK then, a number between " + lower + " and " + upper + "?")
-        isnumber = True
+        if upperBound >= lowerBound:
+          print("OK then, a number between " + lower + " and " + upper + "?")
+          isnumber = True
+        else:
+          print('Why is your upper bound less than your lower bound?!')
       except ValueError:
         print('Not proper numbers; Enter bounds again!')
 
@@ -52,18 +55,17 @@ def advancedGuessingGame():
       try:
         guess = str(input('Guess a Number: '))
         guess = int(guess)
-        if guess < lowerBound:
-          print("Too low, ho")
+        if guess == actualNumber:
+          print("You got it!! It was {}".format(actualNumber))
+          guessed = True
+        elif guess < lowerBound:
+          print("You're Chastised!")
         elif guess > upperBound:
-          print("You're out of the bounds buddy")
+          print("You're Chastised!")
+        elif guess < actualNumber:
+          print("Too Low! Guess AGAIN")
         else:
-          if guess == actualNumber:
-            print("You got it!! It was {}".format(actualNumber))
-            guessed = True
-          elif guess < actualNumber:
-            print('Too low, GUESS AGAIN')
-          else:
-            print('Too high, GUESS AGAIN')
+          print("Too High! Guess AGAIN")
       except ValueError:
         print('Not a proper number; Guess a Number again!')
     return "You got it!"
