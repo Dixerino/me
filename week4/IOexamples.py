@@ -18,12 +18,9 @@ import json
 
 
 def be_cool(name):
-    """Just print, not actually doing any IO."""
-    print(name + " is cool")
-
-
-be_cool("Ben")
-
+    """Just print, not actually doing any IO.""" #DOCSTRING; when you hover over function then it'll show string
+    print(name + " is cool") #name is argument which is passed when function is used
+be_cool("Ben") #Calling function
 
 def be_cool_for_ever(name, file_path):
     """Save a message about being cool for ever."""
@@ -31,6 +28,16 @@ def be_cool_for_ever(name, file_path):
     history_book = open(file_path, mode)
     history_book.write(name + " is cool")
     history_book.close()
+
+def not_cool(name, file_path):
+    """Save a message about what's not cool"""
+    mode = "w"
+    history_book = open(file_path, mode)
+    history_book.write(name + " is not cool")
+    history_book.close()
+
+not_cool("Drugs", "drugs not cool.txt")
+not_cool("Dogs", "dogs not cool.txt")
 
 # look up what '..' means
 be_cool_for_ever("Ben", "../ben_is_cool.txt")
