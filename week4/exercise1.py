@@ -88,12 +88,12 @@ def wordy_pyramid():
         word_api = url.format(base=url, length=l)
         r = requests.get(word_api)
         if r.status_code is 200:
-            word_pyramid.append(r.text)
-    for l in range(2,21,2):
+            word_pyramid.append(str(r.text))
+    for l in range(0,17,2):
         word_api = url.format(base=url, length=20-l)
         r = requests.get(word_api)
         if r.status_code is 200:
-            word_pyramid.append(r.text)
+            word_pyramid.append(str(r.text))
     return (word_pyramid)
 
 
@@ -143,7 +143,18 @@ def diarist():
          the test will have nothing to look at.
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
-    pass
+    count = 0
+    with open('week4/Trispokedovetiles(laser).gcode', 'r') as f_gcode:
+        data = f_gcode.readlines()
+        for n in range(len(data)):
+            if data[n] == "M10 P1\n":
+                count = count + 1
+            elif data[n] == "M10 P1 (turns laser OFF)\n":
+                count = count + 1
+    
+    history_book = open("week4/lasers.pew", "w")
+    history_book.write(str(count))
+    history_book.close()
 
 
 if __name__ == "__main__":
