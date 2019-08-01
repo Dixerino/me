@@ -112,7 +112,7 @@ def abba(source="abba", guard=3):
     result = list(map(apply_rules, parts))
     new_string = "".join(result)
     guard -= 1
-    if guard == -1:
+    if guard == 0:
         return new_string
     else:
         return abba(new_string, guard)
