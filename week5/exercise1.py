@@ -184,11 +184,14 @@ def tell_me_about_this_right_triangle(facts_dictionary):
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
     if return_diagram and return_dictionary:
-        return None
+        facts_dictionary = get_triangle_facts(base, height, units='mm')
+        diagram = tell_me_about_this_right_triangle(facts_dictionary)
+        return diagram + facts_dictionary
     elif return_diagram:
-        return None
+        facts_dictionary = get_triangle_facts(base, height, units='mm')
+        return tell_me_about_this_right_triangle(facts_dictionary)
     elif return_dictionary:
-        return None
+        return get_triangle_facts(base, height, units='mm')
     else:
         print("You're an odd one, you don't want anything!")
 
@@ -222,13 +225,28 @@ def wordy_pyramid(api_key):
             print("failed a request", r.status_code, i)
     return pyramid_list
 
+    pass
 
 def get_a_word_of_length_n(length):
-    pass
-
+    import requests
+    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={l}"
+    word_api = url.format(base=url, l=length)
+    r = requests.get(word_api)
+    if r.status_code is 200:
+        return r.text
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    print(list_of_lengths)
+    import requests
+    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={ID}"
+    word_list = []
+    for n in range(len(list_of_lengths)):
+        l = list_of_lengths[n]
+        word_api = url.format(base=url, ID=l)
+        r = requests.get(word_api)
+        if r.status_code is 200:
+            word_list.append(r.text)
+    return word_list
 
 
 if __name__ == "__main__":
