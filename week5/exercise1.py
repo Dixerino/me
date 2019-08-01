@@ -184,9 +184,10 @@ def tell_me_about_this_right_triangle(facts_dictionary):
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
     if return_diagram and return_dictionary:
-        facts_dictionary = get_triangle_facts(base, height, units='mm')
-        diagram = tell_me_about_this_right_triangle(facts_dictionary)
-        return diagram + facts_dictionary
+        dia_dictionary = get_triangle_facts(base, height, units='mm')
+        diagram = tell_me_about_this_right_triangle(dia_dictionary)
+        dia_dictionary['diagram'] = diagram
+        return dia_dictionary
     elif return_diagram:
         facts_dictionary = get_triangle_facts(base, height, units='mm')
         return tell_me_about_this_right_triangle(facts_dictionary)
