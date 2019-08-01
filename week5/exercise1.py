@@ -15,7 +15,6 @@ are on top of it, take these comments out. Others won't have comments and
 you'll need to figure out for yourself what to do.
 """
 
-
 # This is a terrible function. The rest of the functions in this file do a
 # much better job of what it's trying to do. Once you've has a little look,
 # move on, and eventually delete this function. (And this comment!)
@@ -49,7 +48,11 @@ def do_bunch_of_bad_things():
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    pass
+
+    for n in range(start,stop-1,-1):
+        print(message + ' ' + str(n))
+    print(completion_message)
+    pass    
 
 
 # TRIANGLES
@@ -61,33 +64,44 @@ def countdown(message, start, stop, completion_message):
 # turned off by default but turned on with an optional argument.
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
+
+from math import sqrt
+
 def calculate_hypotenuse(base, height):
-    pass
+    hype = sqrt(int(base)**2 + int(height)**2)
+    return(hype)
 
 
 def calculate_area(base, height):
-    pass
+    area = 1/2*int(base)*int(height)
+    return(area)
 
 
 def calculate_perimeter(base, height):
-    pass
+    perimeter = int(base) + int(height) + (sqrt(int(base)**2 + int(height)**2))
+    return perimeter
 
 
 def calculate_aspect(base, height):
-    pass
+    if base < height:
+        return 'tall'
+    elif height < base:
+        return 'wide'
+    else:
+        return 'equal'
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
     return {
-        "area": None,
-        "perimeter": None,
-        "height": None,
-        "base": None,
-        "hypotenuse": None,
-        "aspect": None,
-        "units": None,
+        "area": calculate_area(base, height),
+        "perimeter": calculate_perimeter(base, height),
+        "height": height,
+        "base": base,
+        "hypotenuse": calculate_hypotenuse(base, height),
+        "aspect": calculate_aspect(base, height),
+        "units": units,
     }
 
 
@@ -132,13 +146,40 @@ def tell_me_about_this_right_triangle(facts_dictionary):
                   |____⋱
                   {base}"""
 
+    if facts_dictionary['aspect'] == 'tall':
+        diagram = ("""
+            {height}
+            |
+            |     |\\
+            |____>| \\  {hypotenuse}
+                  |  \\
+                  |   \\
+                  ------
+                  {base}""")
+    elif facts_dictionary['aspect'] == 'wide':
+        diagram = ("""
+            {hypotenuse}
+             ↓         ∕ |
+                   ∕     | <-{height}
+               ∕         |
+            ∕------------|
+              {base}""")
+    elif facts_dictionary['aspect'] == 'equal':
+        diagram = ("""
+            {height}
+            |
+            |     |⋱
+            |____>|  ⋱ <-{hypotenuse}
+                  |____⋱
+                  {base}""")
     pattern = (
         "This triangle is {area}{units}²\n"
         "It has a perimeter of {perimeter}{units}\n"
         "This is a {aspect} triangle.\n"
     )
 
-    facts = pattern.format(**facts_dictionary)
+    facts = diagram.format(**facts_dictionary) + '\n' + pattern.format(**facts_dictionary)
+    return facts
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
