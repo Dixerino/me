@@ -197,33 +197,33 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
 
 
 def wordy_pyramid(api_key):
-    import requests
+    # import requests
 
-    baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
-    )
-    pyramid_list = []
-    for i in range(3, 21, 2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    for i in range(20, 3, -2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    return pyramid_list
+    # baseURL = (
+    #     "http://api.wordnik.com/v4/words.json/randomWords?"
+    #     "api_key={api_key}"
+    #     "&minLength={length}"
+    #     "&maxLength={length}"
+    #     "&limit=1"
+    # )
+    # pyramid_list = []
+    # for i in range(3, 21, 2):
+    #     url = baseURL.format(api_key="", length=i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.json()[0]["word"]
+    #         pyramid_list.append(message)
+    #     else:
+    #         print("failed a request", r.status_code, i)
+    # for i in range(20, 3, -2):
+    #     url = baseURL.format(api_key="", length=i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.json()[0]["word"]
+    #         pyramid_list.append(message)
+    #     else:
+    #         print("failed a request", r.status_code, i)
+    # return pyramid_list
 
     pass
 
