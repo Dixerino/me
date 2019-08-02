@@ -170,7 +170,23 @@ def random_filler_text(number_of_words=200):
     """
     import random
 
-    return ""
+    filler_text_dictionary = make_filler_text_dictionary()
+    numberIndex = random.randint(3, 7)
+    wordIndex = random.randint(0, 2)
+    random_length = filler_text_dictionary[numberIndex]
+    random_word = random_length[wordIndex]
+
+    paragraph = str(random_word)
+
+    for n in range(number_of_words-1):
+        numberIndex = random.randint(3, 7)
+        wordIndex = random.randint(0, 2)
+        random_length = filler_text_dictionary[numberIndex]
+        random_word = random_length[wordIndex]
+        new_paragraph = paragraph+ ' ' + random_word 
+        paragraph = new_paragraph
+    
+    return paragraph
 
 
 def fast_filler(number_of_words=200):
