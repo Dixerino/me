@@ -203,7 +203,11 @@ def fast_filler(number_of_words=200):
 
     If you get this one to work, you are a Very Good Programmer™!
     """
-
+    import os
+    import json
+    with open('dict_racey.json', 'w') as dict_racey:
+        json.dump(make_filler_text_dictionary(), dict_racey)
+        
     return paragraph
 
 
