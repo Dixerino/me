@@ -173,7 +173,7 @@ def square_koch(t, order, size):
         t.left(90)
         trace += square_koch(t, order-1, size/3)
     return str(order) + trace
-    pass
+    
 
 
 def draw_square(steps=4):
